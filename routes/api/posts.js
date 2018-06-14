@@ -13,7 +13,7 @@ const validatePostInput = require('../../validation/posts');
 
 // @route   GET api/posts/test
 // @desc    Tests post route
-// @access  Public
+// @access  Publi
 router.get('/test', (req, res) => res.json({ msg: 'Posts Works' }));
 
 // @route   GET api/posts

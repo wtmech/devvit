@@ -67,5 +67,5 @@ export const SignupButton = DefaultButton.extend`
 
 export const SignupError = styled.span`
   font-size: 10px;
-  color: red;
+  color: #d75452;
 `;

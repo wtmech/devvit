@@ -5,6 +5,7 @@ export const DefaultInput = styled.input`
   height: ${props => props.height};
   margin: ${props => (props.margin ? props.margin : '0')} 
   border: ${props => props.border};
+  border-radius: 2px;
   padding-left: 5px;
   font-size: 14px;
   line-height: 20px;

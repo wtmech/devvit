@@ -77,6 +77,7 @@ class Navbar extends Component {
                 title="Login" 
                 height="30px"
                 width="120px"
+                margin="0 10px 0 0"
                 background="#00b0ff"
                 color="#fff"
                 onSubmit={this.onSubmit}

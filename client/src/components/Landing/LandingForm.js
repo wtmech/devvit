@@ -46,48 +46,50 @@ class LandingForm extends Component {
   }
 
   render() {
+    const {errors} = this.state;
+
     return (
-      <FormSection onSubmit={this.onSubmit}>
+      <FormSection noValidate onSubmit={this.onSubmit}>
         <FormLabel marginTop="20px">First name</FormLabel>
         <Input
           name="firstName"
           type="text"
-          border={this.state.errors.firstName ? '1px red solid' : null}          
+          border={errors.firstName ? '1px #d75452 solid' : '1px solid #dedede'}       
           width="100%"
           height="32px"
           margin="8px 0 4px" 
           value={this.state.firstName}
           onChange={this.onChange}
         />
-        {this.state.errors.firstName ? <SignupError>{this.state.errors.firstName}</SignupError> : null}
+        {errors.firstName && <SignupError>{errors.firstName}</SignupError>}
         <FormLabel marginTop="10px">Last name</FormLabel>
         <Input
           name="lastName"
           type="text"
-          border={this.state.errors.lastName ? '1px red solid' : null}                    
+          border={errors.lastName ? '1px #d75452 solid' : '1px solid #dedede'}                    
           width="100%"
           height="32px"
           margin="8px 0 4px"
           value={this.state.lastName}
           onChange={this.onChange}          
         />
-        {this.state.errors.lastName ? <SignupError>{this.state.errors.lastName}</SignupError> : null}
+        {errors.lastName && <SignupError>{errors.lastName}</SignupError>}
         <FormLabel marginTop="10px">Email</FormLabel>
         <Input
           name="email"
           type="email"
-          border={this.state.errors.email ? '1px red solid' : null}                    
+          border={errors.email ? '1px #d75452 solid' : '1px solid #dedede'}                    
           width="100%" 
           height="32px"
           margin="8px 0 4px"
           value={this.state.email}
           onChange={this.onChange}          
         />
-        {this.state.errors.email ? <SignupError>{this.state.errors.email}</SignupError> : null}        
+        {errors.email && <SignupError>{errors.email}</SignupError>}        
         <span style={{fontSize: '10px'}}>This site uses gravatar for your profile image, so use a gravatar email</span>
         <FormLabel marginTop="10px">Password</FormLabel>
         <Input
-          border={this.state.errors.password ? '1px red solid' : null}
+          border={errors.password ? '1px #d75452 solid' : '1px solid #dedede'}
           name="password"
           type="password"
           width="100%"
@@ -96,19 +98,19 @@ class LandingForm extends Component {
           value={this.state.password}
           onChange={this.onChange}          
         />
-        {this.state.errors.password ? <SignupError>{this.state.errors.password}</SignupError> : null}
+        {errors.password && <SignupError>{errors.password}</SignupError>}
         <FormLabel marginTop="10px">Confirm password</FormLabel>
         <Input
           name="password2"
           type="password"
-          border={this.state.errors.password2 ? '1px red solid' : null}                    
+          border={errors.password2 ? '1px #d75452 solid' : '1px solid #dedede'}                    
           width="100%"
           height="32px"
           margin="8px 0 4px"
           value={this.state.password2}
           onChange={this.onChange}          
         />
-        {this.state.errors.password2 ? <SignupError>{this.state.errors.password2}</SignupError> : null}        
+        {errors.password2 && <SignupError>{errors.password2}</SignupError>}        
         <SignupButton 
           buttonType="submit" 
           margin="10px 0 0 0"

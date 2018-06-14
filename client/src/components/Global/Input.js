@@ -1,17 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { DefaultInput } from './GlobalStyles';
 
 export default class Input extends Component {
   render() {
     return (
-      <div>
-        <DefaultInput 
+      <Fragment>
+        <DefaultInput
+          name={this.props.name} 
           type={this.props.type} 
-          value={this.props.value}
+          placeholder={this.props.placeholder || ''}
+          value={this.props.value || ''}
           width={this.props.width} 
           height={this.props.height} 
+          margin={this.props.margin}
+          border={this.props.border}
+          onChange={this.props.onChange}
         />
-      </div>
+      </Fragment>
     )
   }
 }

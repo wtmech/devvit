@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import {
   DefaultButton
 } from './GlobalStyles';
@@ -6,16 +6,17 @@ import {
 export default class Button extends Component {
   render() {
     return (
-      <div>
+      <Fragment>
         <DefaultButton 
           type={this.props.buttonType}
           height={this.props.height}
+          width={this.props.width}
           margin={this.props.margin}
           background={this.props.background}
           color={this.props.color}>
           {this.props.title}
         </DefaultButton>
-      </div>
+      </Fragment>
     )
   }
 }

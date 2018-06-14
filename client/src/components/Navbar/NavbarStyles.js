@@ -4,7 +4,7 @@ export const NavbarDiv = styled.div`
   width: 100%;
   height: 60px;
   background: #fff;
-  display: flex;  
+  display: flex; 
 `;
 
 export const NavbarLeft = styled.div`
@@ -15,13 +15,17 @@ export const NavbarLeft = styled.div`
 export const NavbarCenter = NavbarLeft.extend`
   flex: 5;
   border-bottom: 1px solid rgba(0,0,0,0.15)
-  
+  @media (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 export const NavbarRight = NavbarLeft.extend`
-  flex: 3;
+  flex: 4;
   border-bottom: 1px solid rgba(0,0,0,0.15)
-  
+  @media (max-width: 1000px) {
+    flex: 5;
+  }
 `;
 
 export const NavbarLogo = styled.div`
@@ -35,14 +39,22 @@ export const NavbarLogo = styled.div`
   font-size: 35px;
 `;
 
-export const NavbarList = styled.ul`
+export const NavbarForm = styled.form`
+  height: 100%;
   color: #000;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin: 0;
+  @media (max-width: 1000px) {
+    justify-content: center
+    margin-left: 10px;
+  }
 `;
 
-export const NavbarLinks = styled.li`
-  list-style: none;
-  padding-left: 25px;
+export const NavbarItems = styled.div`
+  margin-left: 2px;
+  @media (max-width: 1000px) {
+    margin-left: 10px;
+  }
 `;

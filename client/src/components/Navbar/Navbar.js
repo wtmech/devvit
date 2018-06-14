@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import Input from '../Global/Input'
+import Input from '../Global/Input';
+import Button from '../Global/Button';
 
 import {
   NavbarDiv,
@@ -8,11 +9,37 @@ import {
   NavbarRight,
   NavbarCenter,
   NavbarLogo,
-  NavbarList,
-  NavbarLinks
+  NavbarForm,
+  NavbarItems
 } from './NavbarStyles';
 
 class Navbar extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: '',
+      password: '',
+      errors: {}
+    };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const loginUser = {
+      email: this.state.email,
+      password: this.state.password
+    }
+
+    console.log(loginUser);
+  }
+
   render() {
     return (
       <NavbarDiv>
@@ -23,10 +50,39 @@ class Navbar extends Component {
         </NavbarLeft>
         <NavbarCenter />          
         <NavbarRight>
-          <NavbarList>
-            <Input />
-            <Input />             
-          </NavbarList>
+            <NavbarForm onSubmit={this.onSubmit}>
+              <NavbarItems>
+                <Input 
+                  name="email"
+                  value={this.state.email}
+                  type="email"
+                  height="30px"
+                  placeholder="Email"
+                  onChange={this.onChange}
+                  />
+              </NavbarItems>
+              <NavbarItems>
+              <Input 
+                name="password"
+                value={this.state.password}
+                type="password"
+                height="30px"
+                placeholder="Password"
+                onChange={this.onChange}
+              />
+            </NavbarItems>
+            <NavbarItems>
+              <Button
+                buttonType="submit"
+                title="Login" 
+                height="30px"
+                width="120px"
+                background="#00b0ff"
+                color="#fff"
+                onSubmit={this.onSubmit}
+              />
+            </NavbarItems>
+            </NavbarForm>
         </NavbarRight>
       </NavbarDiv>
     )

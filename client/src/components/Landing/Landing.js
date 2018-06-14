@@ -16,8 +16,8 @@ class Landing extends Component {
             Connect with developers - its free
           </LandingBoxMessage>
           <LandingBoxForm>
-            <LandingForm>
-            </LandingForm>
+            <LandingForm />
+            
           </LandingBoxForm>
         </LandingSignupBox>
       </LandingDiv>

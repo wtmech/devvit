@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {DefaultButton} from '../Global/GlobalStyles'
 import landingImg from '../../img/showcase.jpg'
 
 export const LandingDiv = styled.div`
@@ -14,7 +15,6 @@ export const LandingDiv = styled.div`
 
 export const LandingSignupBox = styled.div`
   width: 384px;
-  height: 460px;
   background: #fff;
   border-radius: 5px;
   display: flex;
@@ -24,7 +24,8 @@ export const LandingSignupBox = styled.div`
 
 export const LandingBoxMessage = styled.div`
   width: 100%;
-  flex: 1;
+  flex: 3;
+  min-height: 63.5px; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,13 +38,14 @@ export const LandingBoxForm = styled.div`
   flex: 4;
   display: flex;
   justify-content: center;
+  overflow: auto;
 `;
 
 /////////////////
 //LANDING FORM//
 ////////////////
 
-export const FormSection = styled.section`
+export const FormSection = styled.form`
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -53,4 +55,17 @@ export const FormSection = styled.section`
 export const FormLabel = styled.label`
   font-size: 14px;
   margin-top: ${props => props.marginTop};
+`;
+
+export const SignupButton = DefaultButton.extend`
+  background: #008dcc;
+  margin-bottom: 10px;
+  &:hover {
+    background: #00b0ff;
+  }
+`;
+
+export const SignupError = styled.span`
+  font-size: 10px;
+  color: red;
 `;

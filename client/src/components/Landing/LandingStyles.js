@@ -58,10 +58,10 @@ export const FormLabel = styled.label`
 `;
 
 export const SignupButton = DefaultButton.extend`
-  background: #008dcc;
+  background: #00b0ff;
   margin-bottom: 10px;
   &:hover {
-    background: #00b0ff;
+    background: #008dcc;
   }
 `;
 

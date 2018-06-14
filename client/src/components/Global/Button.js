@@ -8,6 +8,7 @@ export default class Button extends Component {
     return (
       <Fragment>
         <DefaultButton 
+          hoverBackground={this.props.hoverBackground}
           type={this.props.buttonType}
           height={this.props.height}
           width={this.props.width}

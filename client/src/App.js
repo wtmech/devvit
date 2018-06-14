@@ -5,6 +5,7 @@ import store from './store';
 
 import Navbar from './components/Navbar/Navbar'
 import Landing from './components/Landing/Landing';
+// import Login from 
 
 class App extends Component {
   render() {
@@ -14,6 +15,8 @@ class App extends Component {
           <div>
             <Navbar />
             <Route exact path="/" component={Landing} />
+            <Route exact path="/login" component={Landing} />
+            
           </div>
         </Router>
       </Provider>

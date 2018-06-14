@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-import Input from '../Global/Input';
+import {connect} from 'react-redux';
+
 import Button from '../Global/Button';
 
 import {
@@ -9,7 +12,6 @@ import {
   NavbarRight,
   NavbarCenter,
   NavbarLogo,
-  NavbarForm,
   NavbarItems
 } from './NavbarStyles';
 
@@ -22,75 +24,55 @@ class Navbar extends Component {
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-
-    const loginUser = {
-      email: this.state.email,
-      password: this.state.password
-    }
-
-    console.log(loginUser);
-  }
-
   render() {
+    const location = window.location.pathname === '/login';
     return (
       <NavbarDiv>
         <NavbarLeft>
           <NavbarLogo>
-            D
+            d
           </NavbarLogo>
         </NavbarLeft>
         <NavbarCenter />          
         <NavbarRight>
-            <NavbarForm onSubmit={this.onSubmit}>
-              <NavbarItems>
-                <Input 
-                  name="email"
-                  value={this.state.email}
-                  type="email"
-                  height="30px"
-                  placeholder="Email"
-                  onChange={this.onChange}
-                  />
-              </NavbarItems>
-              <NavbarItems>
-              <Input 
-                name="password"
-                value={this.state.password}
-                type="password"
-                height="30px"
-                placeholder="Password"
-                onChange={this.onChange}
-              />
-            </NavbarItems>
-            <NavbarItems>
-              <Button
-                buttonType="submit"
-                title="Login" 
-                height="30px"
-                width="120px"
-                margin="0 10px 0 0"
-                background="#00b0ff"
-                color="#fff"
-                onSubmit={this.onSubmit}
-              />
-            </NavbarItems>
-            </NavbarForm>
+          <NavbarItems>
+          <Link to={location ? '/' : '/login'}>
+            <Button
+              hoverBackground="#008dcc"
+              color="white"
+              margin="0 10px 0 0"
+              background="#00b0ff"
+              width="100px"
+              height="40px" 
+              title={window.location.pathname === '/login' ? 'Signup' : 'Login'} 
+              onChange={this.onChange} /> 
+              </Link>
+          </NavbarItems>
         </NavbarRight>
       </NavbarDiv>
     )
   }
 }
 
-export default Navbar;
+Navbar.propTypes = {
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => {
+  return {
+    auth: state.auth,
+    errors: state.errors
+  };
+};
+
+export default connect(mapStateToProps)(Navbar);
 
 
 

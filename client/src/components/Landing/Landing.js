@@ -13,11 +13,10 @@ class Landing extends Component {
       <LandingDiv>
         <LandingSignupBox>
           <LandingBoxMessage>
-            Connect with developers - its free
+            {this.props.history.location.pathname === '/login' ? 'Login to devvit' : 'Connect with developers - its free'}
           </LandingBoxMessage>
           <LandingBoxForm>
             <LandingForm />
-            
           </LandingBoxForm>
         </LandingSignupBox>
       </LandingDiv>

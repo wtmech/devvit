@@ -22,6 +22,7 @@ export const DefaultButton = styled.button`
   border: none;
   font-size: 14px;
   cursor: pointer;
-
-
+  &:hover {
+    background: ${props => props.hoverBackground};
+  }
 `;

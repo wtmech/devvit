@@ -54,6 +54,10 @@ export const NavbarForm = styled.form`
 
 export const NavbarItems = styled.div`
   margin-left: 2px;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   @media (max-width: 1000px) {
     margin-left: 10px;
   }

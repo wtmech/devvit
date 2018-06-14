@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import {withRouter} from 'react-router-dom';
 import Input from '../Global/Input';
 // import SignupButton from '../Global/Button';
+import {connect} from 'react-redux';
+import {registerUser, loginUser} from '../../actions/authActions';
 import {
   FormSection,
   FormLabel,
@@ -25,12 +28,23 @@ class LandingForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.errors !== this.props.errors) {
+     this.setState({ errors: this.props.errors });
+    }
+   }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
   onSubmit(e) {
     e.preventDefault();
+
+    const user = {
+      email: this.state.email,
+      password: this.state.password
+    }
 
     const newUser = {
       firstName: this.state.firstName,
@@ -40,16 +54,58 @@ class LandingForm extends Component {
       password2: this.state.password2
     };
 
-    axios.post('/api/users/register', newUser)
-      .then(res => console.log(res.data))
-      .catch(err => this.setState({errors: err.response.data}))
+    if (this.props.location.pathname === '/login') {
+      this.props.loginUser(user, () => {
+        console.log('hi')
+      });
+    } else {
+        this.props.registerUser(newUser, this.props.history);
+    }
+
   }
 
   render() {
     const {errors} = this.state;
+    let display;
 
-    return (
-      <FormSection noValidate onSubmit={this.onSubmit}>
+    if(this.props.history.location.pathname === '/login') {
+      display = (
+        <Fragment>
+        <FormLabel marginTop="10px">Email</FormLabel>
+        <Input
+          name="email"
+          type="email"
+          border={errors.email ? '1px #d75452 solid' : '1px solid #dedede'}                    
+          width="100%" 
+          height="32px"
+          margin="8px 0 4px"
+          value={this.state.email}
+          onChange={this.onChange}          
+        />
+        {errors.email && <SignupError>{errors.email}</SignupError>}        
+        <FormLabel marginTop="10px">Password</FormLabel>
+        <Input
+          border={errors.password ? '1px #d75452 solid' : '1px solid #dedede'}
+          name="password"
+          type="password"
+          width="100%"
+          height="32px"
+          margin="8px 0 4px"
+          value={this.state.password}
+          onChange={this.onChange}          
+        />
+        {errors.password && <SignupError>{errors.password}</SignupError>}
+        <SignupButton 
+          buttonType="submit" 
+          margin="10px 0 0 0"
+          color="#fff">
+          Signin
+        </SignupButton>
+        </Fragment>
+      );
+    } else {
+      display = (
+        <Fragment>
         <FormLabel marginTop="20px">First name</FormLabel>
         <Input
           name="firstName"
@@ -117,9 +173,27 @@ class LandingForm extends Component {
           color="#fff">
           Join now
         </SignupButton>
+        </Fragment>
+      );
+    }
+    return (
+      <FormSection noValidate onSubmit={this.onSubmit}>
+        {display}
       </FormSection>
-    )
+    );
   }
 }
 
-export default LandingForm;
+LandingForm.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors
+})
+
+export default connect(mapStateToProps, {registerUser, loginUser})(withRouter(LandingForm));
